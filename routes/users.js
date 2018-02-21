@@ -5,8 +5,8 @@ var knex = require('../db/knex');
 /* GET users listing. */
 router.get('/', function(req, res) {
   knex.raw('select * from user_table')
-    .then(function(user) {
-      res.send(user.rows);
+    .then(function(data) {
+      res.send(data.rows);
     })
 });
 
