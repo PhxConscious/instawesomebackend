@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var knex = require('../db/knex');
+let express = require('express');
+let router = express.Router();
+let knex = require('../db/knex');
 
 /* GET analytics listing. */
 router.get('/', function(req, res) {
