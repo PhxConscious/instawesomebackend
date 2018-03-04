@@ -25,10 +25,10 @@ router.post('/new', function(req, res, next) {
 });
 
 //Show single user
-router.get('/users', function (req, res, next) {
-    knex.raw(`select * from user_table`)
+router.get('/:id', function (req, res, next) {
+    knex.raw(`select * from user_table where user_id = ${req.params.id}`)
         .then(function (user) {
-            res.send(user)
+            res.send(user.rows)
         })
 });
 
