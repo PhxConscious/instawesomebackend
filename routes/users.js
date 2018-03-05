@@ -26,9 +26,22 @@ router.post('/new', function(req, res, next) {
 
 //Show single user
 router.get('/:id', function (req, res, next) {
-    knex.raw(`select * from user_table where user_id = ${req.params.id}`)
-        .then(function (user) {
-            res.send(user.rows)
+    knex(`user_table`)
+      .where("user_id", req.params.id)
+        .then(user => {
+          knex('user_table').select().then(user => res.send(user))
+        })
+});
+
+router.put('/:id', function (req, res, next) {
+  console.log("put", req.body.userProgress)
+    knex(`user_table`)
+      .where("user_id", req.params.id)
+      .update({
+        "user_progress": req.body.userProgress,
+      })
+        .then(user => {
+          knex('user_table').select().then(user => res.send(user))
         })
 });
 
